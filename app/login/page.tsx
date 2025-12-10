@@ -1,24 +1,24 @@
 "use client";
 
 import React, { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 import { loginSchema, type LoginFormData } from "@/lib/validation";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 
 export default function LoginPage() {
+  const { login, isLoading: authLoading } = useAuth();
   const [formData, setFormData] = useState<LoginFormData>({
     email: "",
     password: "",
   });
 
   const [errors, setErrors] = useState<Partial<Record<keyof LoginFormData, string>>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error for this field when user starts typing
     if (errors[name as keyof LoginFormData]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -27,14 +27,10 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
-    setIsSubmitting(true);
 
     try {
       const validatedData = loginSchema.parse(formData);
-      console.log("Login submitted:", validatedData);
-      
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await login(validatedData);
       
       setShowSuccess(true);
       // Reset form after 3 seconds
@@ -54,9 +50,9 @@ export default function LoginPage() {
           newErrors[field] = err.message;
         });
         setErrors(newErrors);
+      } else if (error instanceof Error) {
+        alert(error.message);
       }
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -112,8 +108,8 @@ export default function LoginPage() {
               />
 
               <div className="pt-2">
-                <Button type="submit" disabled={isSubmitting} className="w-full">
-                  {isSubmitting ? "Logging in..." : "Login"}
+                <Button type="submit" isLoading={authLoading} disabled={authLoading} className="w-full">
+                  {authLoading ? "Logging in..." : "Login"}
                 </Button>
               </div>
             </form>

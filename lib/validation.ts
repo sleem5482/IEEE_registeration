@@ -5,11 +5,13 @@ export const registerSchema = z.object({
   nameAr: z
     .string()
     .min(1, "الاسم رباعي بالعربي مطلوب")
-    .regex(/[\u0600-\u06FF\s]+/, "يجب أن يحتوي الاسم على أحرف عربية"),
+    .regex(/^[\u0600-\u06FF\s]+$/, "يجب أن يحتوي الاسم على أحرف عربية فقط")
+    .refine((val) => val.trim().split(/\s+/).length >= 2, "يجب إدخال الاسم رباعي (على الأقل اسمين)"),
   nameEn: z
     .string()
     .min(1, "Full name in English is required")
-    .regex(/^[a-zA-Z\s]+$/, "Full name must contain only English letters"),
+    .regex(/^[a-zA-Z\s]+$/, "Full name must contain only English letters")
+    .refine((val) => val.trim().split(/\s+/).length >= 2, "Please enter at least two names"),
   phone: z
     .string()
     .min(1, "Phone number is required")
@@ -31,8 +33,11 @@ export const registerSchema = z.object({
       return !isNaN(num) && num >= 16 && num <= 100;
     }, "السن يجب أن يكون بين 16 و 100"),
   gender: z.enum(["male", "female"], {
-    required_error: "النوع مطلوب",
+    message: "النوع مطلوب",
   }),
+  payment_image: z.string().min(1, "صورة الدفع مطلوبة"),
+  payment_code: z.string().optional(),
+  needsBus: z.boolean().optional(),
 });
 
 export type RegisterFormData = z.infer<typeof registerSchema>;
