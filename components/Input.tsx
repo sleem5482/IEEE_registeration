@@ -13,7 +13,8 @@ export default function Input({ label, error, dir = "ltr", className = "", ...pr
       <input
         dir={dir}
         className={`
-          w-full px-4 py-3 
+          form-input
+          w-full px-6 py-4 
           bg-white/5 
           border ${error ? "border-red-400" : "border-white/20"} 
           rounded-lg 
@@ -21,8 +22,8 @@ export default function Input({ label, error, dir = "ltr", className = "", ...pr
           placeholder:text-white/40 
           focus:outline-none 
           focus:ring-2 
-          focus:ring-purple-500/50 
-          focus:border-purple-400 
+          focus:ring-white/50 
+          focus:border-white 
           transition-all
           backdrop-blur-sm
           ${className}

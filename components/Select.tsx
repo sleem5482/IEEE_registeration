@@ -21,26 +21,27 @@ export default function Select({
       <select
         dir={dir}
         className={`
-          w-full px-4 py-3 
+          form-input
+          w-full px-6 py-4 
           bg-white/5 
           border ${error ? "border-red-400" : "border-white/20"} 
           rounded-lg 
           text-white 
           focus:outline-none 
           focus:ring-2 
-          focus:ring-purple-500/50 
-          focus:border-purple-400 
+          focus:ring-white/50 
+          focus:border-white 
           transition-all
           backdrop-blur-sm
           ${className}
         `}
         {...props}
       >
-        <option value="" className="bg-[#2a0066] text-white">
+        <option value="" className="bg-[#1a1a1a] text-white">
           {dir === "rtl" ? "اختر..." : "Select..."}
         </option>
         {options.map((option) => (
-          <option key={option.value} value={option.value} className="bg-[#2a0066] text-white">
+          <option key={option.value} value={option.value} className="bg-[#1a1a1a] text-white">
             {option.label}
           </option>
         ))}

@@ -214,8 +214,19 @@ export default function RegisterPage() {
     <div className="body">
       <div className="container-form">
         <div className="form">
-          <h1 className="text-3xl font-bold text-white mb-2 text-center">IEEE Registration</h1>
-          <p className="text-white/70 text-center mb-4">Join the Event</p>
+          <div className="info">
+            <p className="data">December 17, 2025</p>
+            <h1 className="text-3xl font-bold text-white mb-2">TIME</h1>
+            <p className="p-1">Ticincal lab la ala</p>
+            <p className="infoEvent">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus,
+               voluptatibus? Suscipit nam optio neque libero officia.
+                Exercitationem repellendus ipsum atque numquam, reprehenderit,
+               pariatur nam vero possimus sint ea cupiditate eaque.</p>
+          </div>
+
+
+
+          <p className="text-white/90 mb-4 font-bold text-3xl join">Join the Event</p>
 
           {errors.general && (
             <div className="bg-red-600/10 border border-red-600/20 text-red-300 p-3 rounded mb-4 text-sm">
@@ -259,7 +270,7 @@ export default function RegisterPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Input
                   label="Phone Number"
                   name="phone"
@@ -284,7 +295,7 @@ export default function RegisterPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Select
                   label="Governorate"
                   name="governorate"
@@ -306,7 +317,7 @@ export default function RegisterPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Select
                   label="College"
                   name="college"
@@ -327,7 +338,7 @@ export default function RegisterPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Input
                   label="Age"
                   name="age"
@@ -351,7 +362,7 @@ export default function RegisterPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-white/90 mb-1">Payment Image</label>
                   <input
@@ -360,7 +371,7 @@ export default function RegisterPage() {
                     onChange={handleChange}
                     type="file"
                     accept="image/*"
-                    className="block w-full text-sm text-white/90 bg-white/5 border border-white/10 rounded p-2"
+                    className="form-input block w-full text-sm text-white/90 bg-white/5 border border-white/10 rounded p-2"
                   />
                   {errors.payment_image && <p className="text-xs text-red-400 mt-1">{errors.payment_image}</p>}
                   {previewUrl && (
@@ -379,7 +390,7 @@ export default function RegisterPage() {
               </div>
 
               {/* حقل الباص */}
-              <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+              <div className="bus">
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
@@ -391,7 +402,7 @@ export default function RegisterPage() {
                         setErrors((prev) => ({ ...prev, needsBus: undefined }));
                       }
                     }}
-                    className="w-5 h-5 rounded border-white/20 bg-white/5 text-purple-600 focus:ring-2 focus:ring-purple-500/50"
+                    className="w-5 h-5 rounded border-white/40 bg-transparent text-white focus:ring-2 focus:ring-white/50"
                   />
                   <span className="text-white/90 font-medium">Do you need a bus?</span>
                 </label>
@@ -404,8 +415,8 @@ export default function RegisterPage() {
               </div>
 
               <div className="pt-4">
-                <Button type="submit" isLoading={authLoading} disabled={authLoading} className="w-full">
-                  {authLoading ? "Registering..." : "Register"}
+                <Button type="submit" isLoading={authLoading} disabled={authLoading} className="submit">
+                  {authLoading ? "Registering..." : "Register for this event"}
                 </Button>
               </div>
 
@@ -413,7 +424,7 @@ export default function RegisterPage() {
               <div className="text-center mt-4">
                 <p className="text-white/70 text-sm">
                   Do you already have an account?{" "}
-                  <Link href="/login" className="text-purple-400 hover:text-purple-300 font-medium underline">
+                  <Link href="/login" className="text-white hover:text-gray-300 font-medium underline">
                     Login
                   </Link>
                 </p>
@@ -422,9 +433,10 @@ export default function RegisterPage() {
           )}
         </div>
       </div>
-      <div className="guests flex justify-center">
-        <div className="social">
-          <h4 className="text-white/90 font-medium">Share</h4>
+      <div className="guests">
+        {/* Section 1: Social Share */}
+        <div className="social-section">
+          <h4 className="section-title">Share</h4>
           <div className="social-icons">
             <a href="https://www.facebook.com/IEEEEgypt" target="_blank" rel="noopener noreferrer">
               <FaFacebookF />
@@ -438,6 +450,52 @@ export default function RegisterPage() {
             <a href="https://www.linkedin.com/school/ieee-egypt/" target="_blank" rel="noopener noreferrer">
               <FaLinkedin />
             </a>
+          </div>
+        </div>
+
+        {/* Section 2: Guests */}
+        <div className="guests-section">
+          <h4 className="section-title">Guests</h4>
+          <div className="guest-item">
+            <div className="guest-image">
+              <img src="./images/guest.png" alt="guest" />
+            </div>
+            <div className="guest-info">
+              <h5 className="text-white/90 font-semibold">Guest Name</h5>
+              <p className="text-white/60 text-sm">Guest Member</p>
+            </div>
+          </div>
+          <div className="guest-item">
+            <div className="guest-image">
+              <img src="./images/guest.png" alt="guest" />
+            </div>
+            <div className="guest-info">
+              <h5 className="text-white/90 font-semibold">Guest Name</h5>
+              <p className="text-white/60 text-sm">Guest Member</p>
+            </div>
+          </div>
+          <div className="guest-item">
+            <div className="guest-image">
+              <img src="./images/guest.png" alt="guest" />
+            </div>
+            <div className="guest-info">
+              <h5 className="text-white/90 font-semibold">Guest Name</h5>
+              <p className="text-white/60 text-sm">Guest Member</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Section 3: Hosted By */}
+        <div className="hosted-section">
+          <h4 className="section-title">HOSTED BY</h4>
+          <div className="guest-item">
+            <div className="guest-image">
+              <img src="./images/ieee.png" alt="IEEE Egypt" />
+            </div>
+            <div className="guest-info">
+              <h5 className="text-white/90 font-semibold">IEEE Egypt</h5>
+              <p className="text-white/60 text-sm">Professional Organization</p>
+            </div>
           </div>
         </div>
       </div>

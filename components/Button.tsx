@@ -29,9 +29,9 @@ export default function Button({
   const getVariantClasses = () => {
     switch (variant) {
       case "primary":
-        return "bg-gradient-to-r from-[#6a00ff] to-[#9a4dff] hover:from-[#7a10ff] hover:to-[#aa5dff] focus:ring-purple-500 shadow-purple-500/50";
+        return "bg-white hover:bg-gray-100 text-black focus:ring-white/50 shadow-white/50";
       case "secondary":
-        return "bg-gradient-to-r from-[#4a00b5] to-[#6a00ff] hover:from-[#5a00c5] hover:to-[#7a10ff] focus:ring-purple-500 shadow-purple-500/50";
+        return "bg-gray-200 hover:bg-gray-300 text-black focus:ring-gray-400 shadow-gray-400/50";
       case "danger":
         return "bg-gradient-to-r from-[#ff0066] to-[#ff3366] hover:from-[#ff1066] hover:to-[#ff4376] focus:ring-red-500 shadow-red-500/50";
       case "success":
