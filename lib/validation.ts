@@ -30,7 +30,7 @@ export const registerSchema = z.object({
       const num = parseInt(val);
       return !isNaN(num) && num >= 16 && num <= 100;
     }, "السن يجب أن يكون بين 16 و 100"),
-  gender: z.enum(["male", "female"], {
+  gender: z.enum(["male", "female", ""], {
     required_error: "النوع مطلوب",
   }),
 });

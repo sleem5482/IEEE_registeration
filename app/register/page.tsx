@@ -54,7 +54,7 @@ export default function RegisterPage() {
     level: "",
     email: "",
     age: "",
-    gender: undefined,
+    gender: "",
   });
 
   const [errors, setErrors] = useState<Partial<Record<keyof RegisterFormData, string>>>({});
@@ -98,7 +98,7 @@ export default function RegisterPage() {
           level: "",
           email: "",
           age: "",
-          gender: undefined,
+          gender:"" ,
         });
       }, 3000);
     } catch (error) {
