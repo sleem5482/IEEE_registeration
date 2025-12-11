@@ -8,6 +8,7 @@ import Input from "@/components/Input";
 import Select from "@/components/Select";
 import Button from "@/components/Button";
 import Link from "next/link";
+import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 const governorates = [
   { value: "cairo", label: "القاهرة" },
@@ -210,11 +211,11 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#2a0066] via-[#3b0f85] to-[#4f00b5] flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl">
-        <div className="bg-white/10 border border-white/20 backdrop-blur-xl rounded-xl shadow-xl p-8">
+    <div className="body">
+      <div className="container-form">
+        <div className="form">
           <h1 className="text-3xl font-bold text-white mb-2 text-center">IEEE Registration</h1>
-          <p className="text-white/70 text-center mb-4">Join the IEEE Community</p>
+          <p className="text-white/70 text-center mb-4">Join the Event</p>
 
           {errors.general && (
             <div className="bg-red-600/10 border border-red-600/20 text-red-300 p-3 rounded mb-4 text-sm">
@@ -419,6 +420,25 @@ export default function RegisterPage() {
               </div>
             </form>
           )}
+        </div>
+      </div>
+      <div className="guests flex justify-center">
+        <div className="social">
+          <h4 className="text-white/90 font-medium">Share</h4>
+          <div className="social-icons">
+            <a href="https://www.facebook.com/IEEEEgypt" target="_blank" rel="noopener noreferrer">
+              <FaFacebookF />
+            </a>
+            <a href="https://www.instagram.com/ieeeegypt/" target="_blank" rel="noopener noreferrer">
+              <FaInstagram />
+            </a>
+            <a href="https://twitter.com/IEEEEgypt" target="_blank" rel="noopener noreferrer">
+              <FaTwitter />
+            </a>
+            <a href="https://www.linkedin.com/school/ieee-egypt/" target="_blank" rel="noopener noreferrer">
+              <FaLinkedin />
+            </a>
+          </div>
         </div>
       </div>
     </div>
