@@ -58,16 +58,16 @@ const colleges = [
 ];
 
 const levels = [
-  { value: "1", label: "الفرقة الأولى" },
-  { value: "2", label: "الفرقة الثانية" },
-  { value: "3", label: "الفرقة الثالثة" },
-  { value: "4", label: "الفرقة الرابعة" },
-  { value: "5", label: "الفرقة الخامسة" },
+  { value: "1", label: "First" },
+  { value: "2", label: "Second" },
+  { value: "3", label: "Third" },
+  { value: "4", label: "Fourth" },
+  { value: "5", label: "Fifth" },
 ];
 
 const genders = [
-  { value: "male", label: "ذكر" },
-  { value: "female", label: "أنثى" },
+  { value: "male", label: "Male" },
+  { value: "female", label: "Female" },
 ];
 
 export default function RegisterPage() {
@@ -236,7 +236,7 @@ export default function RegisterPage() {
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
-                  label="الاسم رباعي بالعربي"
+                  label="Arabic Full Name"
                   name="nameAr"
                   value={formData.nameAr ?? ""}
                   onChange={handleChange}
@@ -247,7 +247,7 @@ export default function RegisterPage() {
                   placeholder="أدخل الاسم رباعي بالعربية"
                 />
                 <Input
-                  label="Full name in English"
+                  label="English Full Name"
                   name="nameEn"
                   value={formData.nameEn ?? ""}
                   onChange={handleChange}
@@ -285,46 +285,42 @@ export default function RegisterPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Select
-                  label="المحافظة"
+                  label="Governorate"
                   name="governorate"
                   value={formData.governorate ?? ""}
                   onChange={handleChange}
                   error={errors.governorate}
-                  dir="rtl"
                   options={governorates}
                 />
                 <Input
-                  label="الرقم القومي"
+                  label="National ID"
                   name="nationalId"
                   value={formData.nationalId ?? ""}
                   onChange={handleChange}
                   error={errors.nationalId}
                   pattern="^\d{14}$"
                   required
-                  dir="rtl"
-                  placeholder="14 رقم"
+                  placeholder="14 digits"
                   maxLength={14}
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Select
-                  label="الكلية"
+                  label="College"
                   name="college"
                   value={formData.college ?? ""}
                   onChange={handleChange}
                   error={errors.college}
-                  dir="rtl"
                   options={colleges}
                   required
                 />
                 <Select
-                  label="الفرقة"
+                  label="Level"
                   name="level"
                   value={formData.level ?? ""}
                   onChange={handleChange}
                   error={errors.level}
-                  dir="rtl"
                   options={levels}
                   required
                 />
@@ -332,25 +328,23 @@ export default function RegisterPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
-                  label="السن"
+                  label="Age"
                   name="age"
                   type="number"
                   value={formData.age ?? ""}
                   onChange={handleChange}
                   error={errors.age}
-                  dir="rtl"
-                  placeholder="السن"
+                  placeholder="Age"
                   min={16}
                   max={100}
                   required
                 />
                 <Select
-                  label="النوع"
+                  label="Gender"
                   name="gender"
                   value={formData.gender ?? ""}
                   onChange={handleChange}
                   error={errors.gender}
-                  dir="rtl"
                   options={genders}
                   required
                 />
@@ -358,7 +352,7 @@ export default function RegisterPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-white/90 mb-1">صورة من كود الدفع</label>
+                  <label className="block text-sm font-medium text-white/90 mb-1">Payment Image</label>
                   <input
                     ref={fileInputRef}
                     name="payment_image"
@@ -374,12 +368,12 @@ export default function RegisterPage() {
                 </div>
 
                 <Input
-                  label="كود الدفع"
+                  label="Payment Code"
                   name="payment_code"
                   value={formData.payment_code ?? ""}
                   onChange={handleChange}
                   error={errors.payment_code}
-                  placeholder="أدخل كود الدفع"
+                  placeholder="Enter Payment Code"
                 />
               </div>
 
