@@ -70,13 +70,26 @@ const genders = [
     { value: "female", label: "Female" },
 ];
 
+type FormState = {
+    nameAr?: string;
+    nameEn?: string;
+    phone?: string;
+    governorate?: string;
+    nationalId?: string;
+    college?: string;
+    level?: string;
+    email?: string;
+    age?: string;
+    gender?: "male" | "female";
+    payment_image?: File | null;
+    payment_code?: string;
+    needsBus?: boolean;
+};
+
 export default function RegisterPage() {
     const { register, isLoading: authLoading } = useAuth();
 
-    // keep file as File | null while the rest are strings
-    const [formData, setFormData] = useState<
-        Partial<RegisterFormData & { payment_image?: File | null }>
-    >({
+    const [formData, setFormData] = useState<FormState>({
         nameAr: "",
         nameEn: "",
         phone: "",
@@ -201,7 +214,7 @@ export default function RegisterPage() {
                 const zodErrors: Partial<
                     Record<keyof RegisterFormData, string>
                 > = {};
-                err.errors.forEach((z) => {
+                err.issues.forEach((z) => {
                     const field = z.path[0] as
                         | keyof RegisterFormData
                         | undefined;
