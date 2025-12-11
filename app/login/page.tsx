@@ -5,6 +5,8 @@ import { useAuth } from "@/context/AuthContext";
 import { loginSchema, type LoginFormData } from "@/lib/validation";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
+import { set } from "zod";
 
 export default function LoginPage() {
   const { login, isLoading: authLoading } = useAuth();
@@ -15,6 +17,8 @@ export default function LoginPage() {
 
   const [errors, setErrors] = useState<Partial<Record<keyof LoginFormData, string>>>({});
   const [showSuccess, setShowSuccess] = useState(false);
+
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,14 +37,17 @@ export default function LoginPage() {
       await login(validatedData);
       
       setShowSuccess(true);
-      // Reset form after 3 seconds
       setTimeout(() => {
-        setShowSuccess(false);
-        setFormData({
-          email: "",
-          password: "",
-        });
-      }, 3000);
+        router.push('/admin/users');
+      }, 2000);
+      // Reset form after 3 seconds
+      // setTimeout(() => {
+      //   setShowSuccess(false);
+      //   setFormData({
+      //     email: "",
+      //     password: "",
+      //   });
+      // }, 3000);
     } catch (error) {
       if (error instanceof Error && "errors" in error) {
         const zodErrors = error as { errors: Array<{ path: string[]; message: string }> };

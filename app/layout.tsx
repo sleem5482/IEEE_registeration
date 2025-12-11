@@ -1,7 +1,11 @@
 // app/layout.tsx
 import "./globals.css";
+
 import { Inter, Cairo, Geist, Geist_Mono } from "next/font/google";
 import { AuthProvider } from "@/context/AuthContext";
+
+import Navbar from "@/components/Navbar";
+
 
 // Google Fonts
 const inter = Inter({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-inter" });
@@ -17,6 +21,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${inter.variable} ${cairo.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+
+        <Navbar />
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
