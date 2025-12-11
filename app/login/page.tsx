@@ -6,7 +6,7 @@ import { loginSchema, type LoginFormData } from "@/lib/validation";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
-import { set } from "zod";
+// import { set } from "zod";
 
 export default function LoginPage() {
   const { login, isLoading: authLoading } = useAuth();
@@ -64,7 +64,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#2a0066] via-[#3b0f85] to-[#4f00b5] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-br from-[#2a0066] via-[#3b0f85] to-[#4f00b5] flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="bg-white/10 border border-white/20 backdrop-blur-xl rounded-xl shadow-xl p-8">
           <h1 className="text-3xl font-bold text-white mb-2 text-center">
