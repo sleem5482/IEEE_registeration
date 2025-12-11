@@ -238,8 +238,8 @@ code, pre, kbd, samp {
   .pt-4 {
     text-align: center;
   }
-}
-.bus {
-  display: flex;
-  justify-content: center;
+  .bus {
+    display: flex;
+    justify-content: center;
+  }
 }
