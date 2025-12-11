@@ -1,20 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 import { loginSchema, type LoginFormData } from "@/lib/validation";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
-import { set } from "zod";
+// import { set } from "zod";
 
 export default function LoginPage() {
+  const { login, isLoading: authLoading } = useAuth();
   const [formData, setFormData] = useState<LoginFormData>({
     email: "",
     password: "",
   });
 
   const [errors, setErrors] = useState<Partial<Record<keyof LoginFormData, string>>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
   const router = useRouter();
@@ -22,7 +23,6 @@ export default function LoginPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error for this field when user starts typing
     if (errors[name as keyof LoginFormData]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -31,14 +31,10 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
-    setIsSubmitting(true);
 
     try {
       const validatedData = loginSchema.parse(formData);
-      console.log("Login submitted:", validatedData);
-      
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await login(validatedData);
       
       setShowSuccess(true);
       setTimeout(() => {
@@ -61,14 +57,14 @@ export default function LoginPage() {
           newErrors[field] = err.message;
         });
         setErrors(newErrors);
+      } else if (error instanceof Error) {
+        alert(error.message);
       }
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#2a0066] via-[#3b0f85] to-[#4f00b5] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-br from-[#2a0066] via-[#3b0f85] to-[#4f00b5] flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="bg-white/10 border border-white/20 backdrop-blur-xl rounded-xl shadow-xl p-8">
           <h1 className="text-3xl font-bold text-white mb-2 text-center">
@@ -119,8 +115,8 @@ export default function LoginPage() {
               />
 
               <div className="pt-2">
-                <Button type="submit" disabled={isSubmitting} className="w-full">
-                  {isSubmitting ? "Logging in..." : "Login"}
+                <Button type="submit" isLoading={authLoading} disabled={authLoading} className="w-full">
+                  {authLoading ? "Logging in..." : "Login"}
                 </Button>
               </div>
             </form>
