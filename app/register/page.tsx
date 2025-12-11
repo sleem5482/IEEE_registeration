@@ -5,6 +5,7 @@ import { registerSchema, type RegisterFormData } from "@/lib/validation";
 import Input from "@/components/Input";
 import Select from "@/components/Select";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 const governorates = [
   { value: "cairo", label: "القاهرة" },
@@ -259,6 +260,11 @@ export default function RegisterPage() {
                   {isSubmitting ? "Registering..." : "Register"}
                 </Button>
               </div>
+              <div className="text-center">
+              <p className="text-center">you have an accont ? </p> 
+              <Link href="/login" className=" text-blue-400 text-[22px]">login</Link>
+              </div>
+             
             </form>
           )}
         </div>
