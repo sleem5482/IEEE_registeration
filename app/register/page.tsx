@@ -330,7 +330,7 @@ export default function RegisterPage() {
                 <Input
                   label="Age"
                   name="age"
-                  type="number"
+                  type="text"
                   value={formData.age ?? ""}
                   onChange={handleChange}
                   error={errors.age}
@@ -352,23 +352,18 @@ export default function RegisterPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-white/90 mb-2">Payment Image</label>
+                  <label className="block text-sm font-medium text-white/90 mb-1">Payment Image</label>
                   <input
                     ref={fileInputRef}
                     name="payment_image"
                     onChange={handleChange}
                     type="file"
                     accept="image/*"
-                    className="block w-full text-sm text-white/90 bg-white/5 border border-white/20 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-400 transition-all backdrop-blur-sm"
+                    className="block w-full text-sm text-white/90 bg-white/5 border border-white/10 rounded p-2 cursor-pointer"
                   />
-                  {errors.payment_image && (
-                    <p className="mt-1 text-sm text-red-400 flex items-center gap-1">
-                      <span>⚠</span>
-                      {errors.payment_image}
-                    </p>
-                  )}
+                  {errors.payment_image && <p className="text-xs text-red-400 mt-1">{errors.payment_image}</p>}
                   {previewUrl && (
-                    <img src={previewUrl} alt="preview" className="mt-2 max-h-28 object-contain rounded border border-white/20" />
+                    <img src={previewUrl} alt="preview" className="mt-2 max-h-28 object-contain rounded" />
                   )}
                 </div>
 
